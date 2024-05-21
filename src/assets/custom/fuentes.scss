@@ -1,0 +1,41 @@
+@mixin font-primary($size, $weig, $line) {
+    font-size: $size !important; 
+    font-weight: $weig !important;
+    line-height: $line !important;
+    font-family: "Red Hat Display" !important;
+}
+
+@mixin font-secondary($size, $weig, $line) {
+    font-size: $size !important; 
+    font-weight: $weig !important;
+    line-height: $line !important;
+    font-family: "Nunito" !important;
+}
+
+/* Red Hat */
+.primary-bold{ 
+    @include font-primary(16px, bold, normal);
+}
+.primary-bold-h1{
+    @include font-primary(34px, 700,34px);
+}
+.primary-bold-h2{
+    @include font-primary(26px, 700,30px);
+}
+
+.primary-bold-h3{
+    @include font-primary(20px, 700,30px);
+}
+
+/** Nunito */
+.font-secondary-bold{
+    @include font-secondary(16px, 700, normal);
+}
+.font-secondary-bold-24{
+    @include font-secondary(24px, 700,30px);
+}
+.font-secondary-bold-14{
+    @include font-secondary(14px, 700,20px);
+}
+
+

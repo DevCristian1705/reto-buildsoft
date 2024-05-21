@@ -1,0 +1,65 @@
+<div class="content">
+    <div class="fijo">
+        <div class="contenido"> 
+            <div class="items">
+                <div class="item font-primary-bold-h4">  
+                    <div class="logo" >
+                        <img class="imagen" src="../../assets/icono-navbar.png" alt="logo">
+                    </div> 
+                     <div class="font-secondary-bold-14">
+                        Reto técnico, tipo de camnbio,<br>
+                        para la empresa BuildSoft 
+                     </div>
+                </div> 
+            </div>
+        </div> 
+    </div>
+    <div class="login">
+        
+        <div class="login__content">
+            <div class="primary-bold-h2 color-black-300 ">
+                <span class="line-under-text">Bi</span>envenido(a)
+            </div>
+        
+            <form [formGroup]="loginForm">
+                <div class="formulario font-secondary-regular-12">
+        
+                    <div class="formulario__inputs">
+                        <app-input-library 
+                            typeInput="ClassicInput"
+                            label="Correo electrónico"
+                            idTextField="email"
+                            maxLength="50"
+                            formControlName="email"
+                            cbxReactiveForm
+                            emailValidator
+                            [readOnly]="loadingButton"
+                            [msgError]="getErrorEmail"
+                            [firstTouchedValue]="false">
+                        </app-input-library>  
+
+                        <app-input-library
+                            typeInput="ClassicInputPass"
+                            label="Contraseña"
+                            idTextField="password"
+                            minLength="8"   
+                            formControlName="password"
+                            cbxReactiveForm
+                            [readOnly]="loadingButton"
+                            [msgError]="getErrorPass"
+                            [firstTouchedValue]="false">
+                        </app-input-library>  
+                    </div>
+                 
+                </div> 
+            </form> 
+ 
+            <div class="mt-4 botones">
+                <button class="bottom-primary" [disabled]="loginForm.invalid" >   
+                    <p class="font-secondary-bold-14  texto-botton"> Calcular </p>   
+                </button>  
+            </div>  
+        </div> 
+
+    </div>
+</div>

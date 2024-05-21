@@ -1,0 +1,19 @@
+
+<div class="label"> {{label}} </div>
+<div class="inputSimulator">
+    <input
+        [id]="idTextField" 
+        keyValidation="decimal" 
+        inputmode="numeric"
+        class="input"
+        [type]="type" 
+        [autocomplete]="false"
+        [value]="value"
+        (input)="onChange($event.target)"
+        [disabled]="disabled"
+        [readonly]="isReadOnly" > 
+    <div class="currencyInput">{{typeCurrency}}</div>
+</div>
+<div class="wrapper-error">
+    <div class="error" *ngIf="errorMsg"> {{errorMsg}} </div>
+</div>

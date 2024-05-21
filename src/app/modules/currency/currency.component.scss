@@ -1,0 +1,158 @@
+@import '../../../assets/custom/breakpoints.scss';
+
+.simulator{
+    background: #360355; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+     
+    &__contenedor{ 
+        display: grid;
+        justify-content: center;
+        align-items: center; 
+        gap: 1em;
+        padding: 20px; 
+        border-radius: 20px;
+        width: 400px;
+        background: #ffffff; 
+        @include media-breakpoint('lt-sm') {
+            width: 100%;
+        }
+
+    }
+
+    &__titulo{
+        font-family: cursive;
+        font-size: 20px;
+    }
+
+    &__type-change{
+        font-family: cursive;
+        display: flex; 
+        gap: 1em;
+        justify-content: space-evenly;
+    }
+
+    &__form{
+        display: flex; 
+        gap: 1em;
+        flex-direction: column;
+
+        &__icon{
+            display: flex; 
+            justify-content: end;
+          
+        }
+  
+    }
+
+    &__info{
+        display: flex; 
+        gap: 1em;
+        align-items: center;
+
+        &__imagen{
+            margin: 1px solid black;
+        }
+    }
+
+}
+
+.icon-rotate{
+    transition: 0.3s linear;
+    transform: rotate(270deg);
+    cursor: pointer;
+}
+.icon-fijo{
+    transform: rotate(90deg);
+    cursor: pointer;
+}
+
+
+.active{
+    color : #640AB0;
+    border-bottom: dashed;
+}
+.inaactive{
+    color : #313131;
+}
+ 
+ 
+
+.skeleton {
+    display: inline-block;
+    height: 1em;
+    position: relative;
+    overflow: hidden;
+    background-color: #DDDBDD;
+  
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      transform: translateX(-100%);
+      background-image: linear-gradient(
+        90deg,
+        rgba(#fff, 0) 0,
+        rgba(#fff, 0.4) 40%,
+        rgba(#fff, 0.8) 80%,
+        rgba(#fff, 0)
+      );
+      animation: shimmer 2s infinite;
+      content: ''; 
+    }
+  
+    @keyframes shimmer {
+      100% {
+        transform: translateX(100%);
+      }
+    }
+  }
+  
+.skeleton-simulator {
+    &__contenedor{ 
+        display: grid;
+        align-items: center; 
+        gap: 1em;
+        padding: 20px; 
+        @include media-breakpoint('lt-sm') {
+            width: 100%;
+        }
+    }
+
+ 
+    .first-input {
+        height:60px;
+        border-radius: 10px; 
+    }
+
+    .change-type{
+        display: flex;
+        gap: 15px;
+        &__input {
+            width: 100%;
+            height:35px;
+            border-radius: 10px; 
+        }
+    }
+
+    .second-row { 
+        &__rates-wrapper {
+            display: flex;
+            justify-content: right; 
+        } 
+   
+        &__change-btn {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          display: flex;
+          justify-content: right;
+        }
+        
+    } 
+}

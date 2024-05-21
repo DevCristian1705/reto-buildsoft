@@ -1,0 +1,212 @@
+@import '../../../assets/custom/breakpoints.scss';
+
+.ClassicInput{
+     
+    .input-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .label {
+      position: absolute;
+      left: 8px;
+      transition: all 0.2s;
+      padding: 0.2px;
+      z-index: 1;
+      font-family: 'Nunito';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 22px;
+      color: #626262;
+    }
+  
+    .text-input {
+      padding: 0 0.5rem;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      font-size: 18px;
+      outline: none;
+      transition: all 0.3s;
+      box-sizing: border-box;
+      border: 1px solid #626262;
+      border-radius: 12px;
+    }
+  
+    .label::before {
+      content: '';
+      height: 5px;
+      background-color: #FBF8FD;
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 100%;
+      z-index: -1;
+      font-family: 'Nunito';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 16px;
+      color: #640ab0;
+    }
+  
+    .text-input:focus {
+      border: 1px solid #640ab0;
+    }
+  
+    .text-input:focus + .label,
+    .filled {
+      top: -8px;
+      font-family: 'Nunito';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 16px;
+      color: #640ab0;
+      padding-right: 5px;
+      padding-left: 5px;
+    }
+  
+    .text-input::placeholder {
+      font-size: 16px;
+      opacity: 0;
+      transition: all 0.3s;
+    }
+  
+    .text-input:focus::placeholder {
+      opacity: 1;
+      animation-delay: 0.2s;
+    }
+  
+    .text-input:not(:placeholder-shown) + .label {
+      top: -8px;
+      font-family: 'Nunito';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 16px;
+      color: #5e6368;
+      padding-right: 5px;
+      padding-left: 5px;
+    }
+  
+    .text-input:not(:placeholder-shown) {
+      border: 1px solid #212121;
+      font-family: 'Nunito';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      color: #212121;
+    }
+  
+    .text-input:disabled + .label {
+      top: -8px;
+      font-family: 'Nunito';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 16px;
+      color: #5e6368;
+      padding-right: 5px;
+      padding-left: 5px;
+    }
+  
+    .text-input:disabled {
+      border: 1px solid #999797;
+      font-family: 'Nunito';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 22px;
+      color: #999797;
+    }
+  
+    .message-error {
+      font-family: 'Nunito';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 16px;
+      color: #e00000;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding-left: 0.5em;
+      padding-top: 0.1em;
+      width: fit-content;
+    }
+  
+    .error-input {
+      border: 1px solid #e00000;
+      padding: 0.8rem;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      outline: none;
+      transition: all 0.3s;
+      box-sizing: border-box;
+      border-radius: 12px;
+      font-family: 'Nunito';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 22px;
+      color: #212121;
+    }
+  
+    .error-input + .label {
+      font-family: 'Nunito';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 16px;
+      color: #e00000;
+      top: -8px;
+      padding-right: 5px;
+      padding-left: 5px;
+    }
+  
+    .loading {
+      position: absolute;
+      right: 10px;
+    }
+  
+    .icon {
+      position: absolute;
+      right: 15px !important;
+      top: 13px !important;
+  
+      img{
+        width: 25px;
+      }
+    }
+
+    .text-pass{
+      font-size: 12px;
+      align-items: center; 
+      display: grid;
+      grid-template-columns: 25px 1fr;
+      gap: 0.5em;
+      padding: 0.3em 0; 
+
+      &--valid{
+        color: #640AB0;
+        img{
+          padding: 0 1em;
+        }
+      }
+      &--invalid{
+        color: #626262;
+        img{
+          padding: 0 2em 0 1.5em;
+        }
+      }
+    }
+
+}
+  
+ 

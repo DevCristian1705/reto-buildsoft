@@ -1,0 +1,90 @@
+
+    <div class="simulator"> 
+        <div class="simulator__contenedor">
+            <div class="simulator__info">
+                <div class="simulator__imagen">
+                    <img width="150" height="50"
+                        src="../../assets/icono-navbar.png" 
+                        alt="logo">
+                </div>
+            
+                <div class="simulator__titulo">
+                    Cambia tus dolares y soles al intante
+                </div>
+            </div>
+
+            <ng-container *ngIf="!isLoading; else skeleton">
+                <div class="simulator__type-change">
+                    <div [ngClass]="{ 'active' : flgRotate, 'inaactive' : !flgRotate}">
+                        VENTA S/ {{ TCventa  | number:'1.2-2' }}
+                    </div> 
+
+                    <div [ngClass]="{ 'active' : !flgRotate, 'inaactive' : flgRotate}">
+                        COMPRA S/ {{ TCcompra   | number:'1.2-2' }}
+                    </div>  
+                </div>   
+
+                <form [formGroup]="simulatorForm">
+                    <div class="simulator__form">
+                    
+                        <input-simulator
+                            pdDigitsOnly
+                            formControlName="amountLeft" 
+                            errorMsg={{amountLeftError}} 
+                            label="TIENES"
+                            [value]="amountLeftControl.value" 
+                            type="text" 
+                            maxLength="8" 
+                            [typeCurrency]="(flgRotate) ?  'Dólares' : 'Soles'" 
+                            cbxReactiveForm>
+                        </input-simulator>
+                        
+                        <div class="simulator__form__icon" >
+                            <img 
+                                (click)="onRotateIcon()"
+                                [ngClass]="{ 'icon-rotate' : flgRotate, 'icon-fijo' : !flgRotate}"
+                                src="assets/invert.svg" 
+                                alt="Invertir" width="48" height="48"
+                                role="button">
+                        </div>
+            
+                        <input-simulator 
+                            pdDigitsOnly
+                            formControlName="amountRight"  
+                            label="RECIBES"
+                            [isReadOnly]="true"
+                            [value]="amountRightControl.value" 
+                            type="text" maxLength="10" 
+                            [typeCurrency]="(flgRotate) ?  'Soles' : 'Dólares'" 
+                            [isReadOnly]="true" 
+                            cbxReactiveForm>
+                        </input-simulator>
+                    
+                    </div> 
+                
+                </form> 
+            </ng-container>
+        </div>
+    </div>
+
+<ng-template #skeleton>
+    <div class="skeleton-simulator "> 
+        <div class="skeleton-simulator__contenedor">
+           
+            <div class="change-type">
+                <div class="change-type__input skeleton"></div> 
+                <div class="change-type__input skeleton"></div> 
+            </div>
+
+            <div class="first-input skeleton"></div> 
+
+            <div class="second-row"> 
+                <div class="second-row__rates-wrapper"> 
+                    <div class="second-row__change-btn skeleton"> </div> 
+                </div> 
+            </div>
+
+        <div class="first-input skeleton"></div>  
+        </div>
+    </div>  
+  </ng-template>

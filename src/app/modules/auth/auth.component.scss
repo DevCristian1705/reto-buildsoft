@@ -1,0 +1,133 @@
+@import '../../../assets/custom/breakpoints.scss';
+
+.content{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+
+    @include media-breakpoint('xs') {
+        flex-direction: column;
+    }
+
+
+    .fijo{
+        width: 60%;
+        background-image:  url('../../../assets/bg-portafolio-1.webp');
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+
+        @include media-breakpoint('lt-md') {
+           display: none;
+        }
+
+        .contenido{
+            place-items: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 80%;
+        }
+
+        .logo{ 
+            cursor: pointer;
+        }
+        .imagen{
+            width: 150px;
+            filter: invert(1);
+         
+        }
+
+        .items{
+            display: flex;
+            flex-direction: column;
+            row-gap: 3rem;
+            margin: 2em 0em 0em 0em;
+            color: white;
+            text-align: center;
+        }
+
+    
+ 
+    }
+
+    .login{ 
+        width: 40%; 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+
+        @include media-breakpoint('lt-md') {
+            width: 100%; 
+         }
+ 
+        .login{
+            display: grid;
+            align-items: center;
+            height: 100vh;
+        
+            @include media-breakpoint('lt-md') {
+                align-content: space-between;
+            }  
+            
+            &__content{ 
+                margin: 3em;
+                justify-content: center;
+                display: flex;
+                flex-direction: column;
+                gap: 2em;
+                text-align: center;
+                width: 70%;
+                
+                .formulario{ 
+                    &__inputs{
+                        display: flex;
+                        flex-direction: column;
+                        gap: 1.5em;
+                    }
+            
+                    &__olvidopass{
+                        float: right;
+                        margin-top: 0.5rem;
+                        text-decoration: underline;
+                        cursor: pointer;
+                    } 
+                }
+            }
+        
+            &::-webkit-scrollbar {
+                width: 3px;
+                height: 10px;
+                -webkit-appearance: none !important;
+            }
+            &::-webkit-scrollbar-thumb {
+                border-radius: 5px;
+                border: 1px solid transparent;
+                background-color: #c4c4c4;
+                height: 2px;
+            }
+        
+               
+        }
+    }
+}
+
+  
+
+
+
+.bottom-primary{
+    padding: 0.2em 1em;
+    margin: 0;
+    display: inline-block; 
+    cursor: pointer;
+    border-radius: 10px; 
+    background-color: red; 
+    border: white;
+    color: white;
+    outline: none;
+    min-width: 200px;
+}
