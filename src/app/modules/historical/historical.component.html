@@ -1,0 +1,34 @@
+
+<div class="simulator"> 
+    <div class="simulator__contenedor">
+        
+        <div class="simulator__info">
+            <div class="simulator__imagen">
+                <img width="150" height="50" src="../../assets/icono-navbar.png" alt="logo">
+            </div>
+            <div class="simulator__titulo"> Historial de cambio </div>
+        </div>
+  
+        <div class="datos-exhange datos-exhange--negrita"> 
+              <div> Monto </div>
+              <div> Operacion </div> 
+              <div> Tipo Cambio </div>
+              <div> Recibio </div>  
+        </div> 
+        
+        <div class="datos-exhange  datos-exhange--table" *ngFor="let item of arrayHistory"> 
+            <div> {{item.amount}}  </div>
+            <div> {{ item.type }}  </div> 
+            <div> {{ item.type === ' COMPRA'? item.valuePurchase :  item.valueSale}}  </div>
+            <div> {{ item.amountChange  }}  </div>  
+        </div> 
+        
+        <div class="button">
+            <button class="bottom-primary"  (click)="onBack()">   
+                <p class="font-secondary-bold-14  texto-botton"> Registrar Cambio </p>   
+            </button> 
+        </div>
+    </div>
+
+
+</div>

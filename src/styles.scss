@@ -8,3 +8,20 @@ body{
     margin: 0;
 }
    
+
+.bottom-primary{
+    padding: 0.2em 1em;
+    margin: 0;
+    display: inline-block; 
+    cursor: pointer;
+    border-radius: 10px; 
+    background-color: red; 
+    border: white;
+    color: white;
+    outline: none;
+    min-width: 200px;
+
+    &:disabled{
+        background-color: rgb(146, 100, 100);  
+    }
+}

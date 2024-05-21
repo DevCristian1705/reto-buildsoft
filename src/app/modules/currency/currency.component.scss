@@ -37,7 +37,7 @@
         display: flex; 
         gap: 1em;
         flex-direction: column;
-
+        padding-bottom: 20px ;
         &__icon{
             display: flex; 
             justify-content: end; 
@@ -145,4 +145,11 @@
         }
         
     } 
+}
+
+.button{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.25em;
 }

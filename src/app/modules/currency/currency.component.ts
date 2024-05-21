@@ -6,8 +6,11 @@ import { ReactiveFormDirective } from '../../shared/directives/reactiveForm.dire
 import { CurrencyService } from '../../shared/service/currency-service';
 import { ICurrencyExchange } from '../../shared/interface/currency-exchange';
 import { HttpClientModule } from '@angular/common/http';
-import { DirectivesModule } from '../../shared/directives/directives.module';
+import { DirectivesModule } from '../../shared/directives/directives.module';   
+import { Router } from '@angular/router';
  
+
+
 @Component({
   selector: 'currency',
   standalone : true,
@@ -18,10 +21,10 @@ import { DirectivesModule } from '../../shared/directives/directives.module';
     InputSimulatorComponent,
     CommonModule,
     DirectivesModule,
-    HttpClientModule, 
+    HttpClientModule,  
   ],
   providers: [
-    CurrencyService
+    CurrencyService,  
   ], 
   templateUrl: './currency.component.html',
   styleUrls: ['./currency.component.scss'],
@@ -53,7 +56,9 @@ get amountLeftError(): string {
 
 constructor(
     public fb: FormBuilder,
+    private router : Router,
     public currencySrv: CurrencyService,
+   
   ) {  
     this.onGetTypeChange(); 
     this.onCreateForm(); 
@@ -76,23 +81,27 @@ constructor(
         this.currentAmount = value;
         this.amountLeftValChanges(); 
       }else{
+        this.currentAmount = 0;
         this.amountRightControl.setValue(null)
       }
     });
   }
  
+ 
   onGetTypeChange(): void{ 
     this.currencySrv.onGetCurrencyExchange()
       .subscribe((resp : ICurrencyExchange) => { 
-        this.TCcompra = resp.rates['PEN'];
-        this.TCventa = resp.rates['USD'];   
+        this.TCcompra = resp.rates['USD'];
+        this.TCventa = resp.rates['PEN'];   
         this.isLoading = false 
     });
   }
  
   onRotateIcon() { 
-    this.flgRotate = !this.flgRotate; 
-    this.amountLeftValChanges(); 
+    if(this.currentAmount){
+      this.flgRotate = !this.flgRotate; 
+      this.amountLeftValChanges(); 
+    }  
   }
  
   amountLeftValChanges(): void {
@@ -108,4 +117,28 @@ constructor(
   }
 
 
+  onSaveSimulate(){
+    const DATA = {
+      valuePurchase : this.TCcompra,
+      valueSale : this.TCventa,
+      amount  : this.amountLeftControl.value,
+      amountChange: this.amountRightControl.value, 
+      type: (this.flgRotate ? 'VENTA' : 'COMPRA')
+    }
+    
+    const existingDataString = localStorage.getItem('DATA');
+    let existingData = existingDataString ? JSON.parse(existingDataString) : []; 
+ 
+    if (!Array.isArray(existingData)) {
+        existingData = [];
+    }
+   
+    const newData = [...existingData, DATA]; 
+    localStorage.setItem('DATA', JSON.stringify(newData));
+
+  }
+
+ onToGoHistorial(){
+   this.router.navigateByUrl('/historial-exchange')
+ }
 }

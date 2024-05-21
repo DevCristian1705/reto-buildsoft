@@ -1,6 +1,9 @@
 
     <div class="simulator"> 
+       
+
         <div class="simulator__contenedor">
+ 
             <div class="simulator__info">
                 <div class="simulator__imagen">
                     <img width="150" height="50"
@@ -60,6 +63,16 @@
                     
                     </div> 
                 
+                    <div class="button">
+                        <button class="bottom-primary"  [disabled]="!currentAmount"  (click)="onSaveSimulate()">   
+                            <p class="font-secondary-bold-14  texto-botton"> Registrar Cambio </p>   
+                        </button> 
+                        <button class="bottom-primary"  (click)="onToGoHistorial()">   
+                            <p class="font-secondary-bold-14  texto-botton">Ver Historial </p>   
+                        </button> 
+                    </div>
+                    
+
                 </form> 
             </ng-container>
         </div>

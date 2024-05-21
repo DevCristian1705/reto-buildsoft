@@ -3,13 +3,11 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HttpTokenInterceptor } from './shared/interceptor/token.interceptor';
-import { OnlyNumbersDirective } from './shared/directives/only-numbers';
+import { HttpTokenInterceptor } from './shared/interceptor/token.interceptor'; 
  
 export const appConfig: ApplicationConfig = { 
- 
-  providers: [  
-    OnlyNumbersDirective,
+   
+  providers: [    
     provideRouter(routes),
     { provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true },
   ]
