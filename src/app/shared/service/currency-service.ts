@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../environment/environment';
+import { environment } from '../../../environment/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { ICurrencyExchange } from '../interface/currency-exchange';
 import { Observable } from 'rxjs';

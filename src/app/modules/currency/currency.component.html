@@ -27,14 +27,13 @@
                 <form [formGroup]="simulatorForm">
                     <div class="simulator__form">
                     
-                        <input-simulator
-                            pdDigitsOnly
+                        <input-simulator 
                             formControlName="amountLeft" 
                             errorMsg={{amountLeftError}} 
                             label="TIENES"
                             [value]="amountLeftControl.value" 
                             type="text" 
-                            maxLength="8" 
+                            maxLength="8"  
                             [typeCurrency]="(flgRotate) ?  'Dólares' : 'Soles'" 
                             cbxReactiveForm>
                         </input-simulator>
@@ -48,8 +47,7 @@
                                 role="button">
                         </div>
             
-                        <input-simulator 
-                            pdDigitsOnly
+                        <input-simulator  
                             formControlName="amountRight"  
                             label="RECIBES"
                             [isReadOnly]="true"

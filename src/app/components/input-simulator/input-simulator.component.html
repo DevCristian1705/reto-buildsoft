@@ -1,16 +1,14 @@
 
 <div class="label"> {{label}} </div>
 <div class="inputSimulator">
-    <input
-        [id]="idTextField" 
-        keyValidation="decimal" 
+    <input 
+        onlyNumbers 
         inputmode="numeric"
         class="input"
-        [type]="type" 
+        type="text" 
         [autocomplete]="false"
         [value]="value"
-        (input)="onChange($event.target)"
-        [disabled]="disabled"
+        (input)="onChange($event.target)" 
         [readonly]="isReadOnly" > 
     <div class="currencyInput">{{typeCurrency}}</div>
 </div>

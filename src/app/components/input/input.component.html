@@ -1,11 +1,9 @@
 <div> 
   <div class="ClassicInput">
-    <div class="input-container" [style.width]="width">
+    <div class="input-container" >
       <input 
         type="text" 
-        [id]="idTextField" 
-        [style.height]="height" 
-        [placeholder]="placeholder" 
+        [id]="idTextField"  
         [disabled]="disabled"
         [readonly]="readOnly"
         [value]="value"
@@ -15,8 +13,8 @@
       <label [htmlFor]="idTextField"  class="label">{{label}}</label>
     </div>
     
-    <div  [style.width]="width" >
-      <div *ngIf="hasError" class="message-error"  >
+    <div >
+      <div *ngIf="msgError" class="message-error"  >
         {{msgError}}
       </div>
     </div>

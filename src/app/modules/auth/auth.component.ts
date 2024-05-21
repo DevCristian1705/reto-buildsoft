@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IUser } from '../../interface/user.interface';
 import { CommonModule } from '@angular/common'; 
-import { ReactiveFormDirective } from '../../directives/reactiveForm.directive';
+import { ReactiveFormDirective } from '../../shared/directives/reactiveForm.directive';
 import { InputComponent } from '../../components/input/input.component';
  
 @Component({
@@ -17,13 +16,9 @@ import { InputComponent } from '../../components/input/input.component';
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss']
 })
-export class AuthComponent implements OnInit {
-
+export class AuthComponent  {
 
   loginForm!: FormGroup; 
-  loadingButton: boolean = false; 
-  userReg : IUser = {} as IUser;
-  listUser : any[] = [];
   
   constructor( 
     public fb: FormBuilder,   
@@ -57,17 +52,5 @@ export class AuthComponent implements OnInit {
     return '';
   }
 
-  ngOnInit(): void {
-  }
-  
-  onLoginGoogle(){ 
-  //  this.authsrv.loginGoogle();
-  }
-
-  onLogin() { 
-    this.loadingButton = true
-    const DATA_FORM = this.loginForm.value;   
-  //  this.authsrv.login(DATA_FORM.email, DATA_FORM.password)  
-  }
  
 }

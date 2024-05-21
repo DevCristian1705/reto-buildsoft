@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputSimulatorComponent } from '../../components/input-simulator/input..simulator.component';
-import { ReactiveFormDirective } from '../../directives/reactiveForm.directive';
-import { CurrencyService } from '../../service/currency-service';
-import { ICurrencyExchange } from '../../interface/currency-exchange';
+import { ReactiveFormDirective } from '../../shared/directives/reactiveForm.directive';
+import { CurrencyService } from '../../shared/service/currency-service';
+import { ICurrencyExchange } from '../../shared/interface/currency-exchange';
 import { HttpClientModule } from '@angular/common/http';
-
+import { DirectivesModule } from '../../shared/directives/directives.module';
+ 
 @Component({
   selector: 'currency',
   standalone : true,
@@ -16,21 +17,23 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     InputSimulatorComponent,
     CommonModule,
-    HttpClientModule
+    DirectivesModule,
+    HttpClientModule, 
   ],
   providers: [
     CurrencyService
-  ],
+  ], 
   templateUrl: './currency.component.html',
   styleUrls: ['./currency.component.scss'],
+ 
 })
 export class CurrencyExchangeComponent {
 
 simulatorForm!: FormGroup; 
 flgRotate = true; 
-montoaCambiar = 0;
 TCcompra = 0;
 TCventa = 0;   
+currentAmount = 0;
 isLoading : boolean = true;
  
 get amountLeftControl(): FormControl {
@@ -53,18 +56,12 @@ constructor(
     public currencySrv: CurrencyService,
   ) {  
     this.onGetTypeChange(); 
-    this.onCreateForm();
-
-    this.amountLeftControl.valueChanges.subscribe((value) => {
-      if (value > 0) {
-        this.montoaCambiar = value;
-        this.amountLeftValChanges(); 
-      }else{
-        this.amountRightControl.setValue(null)
-      }
-    });
+    this.onCreateForm(); 
   }
  
+  ngOnInit(){ 
+   this.onDetectedChangeAmount();
+  }
 
   onCreateForm(){
     this.simulatorForm = this.fb.group({
@@ -73,14 +70,23 @@ constructor(
     });
   }
 
-  onGetTypeChange(){ 
+  onDetectedChangeAmount(){
+    this.amountLeftControl.valueChanges.subscribe((value) => {
+      if (value > 0) {
+        this.currentAmount = value;
+        this.amountLeftValChanges(); 
+      }else{
+        this.amountRightControl.setValue(null)
+      }
+    });
+  }
+ 
+  onGetTypeChange(): void{ 
     this.currencySrv.onGetCurrencyExchange()
-    .subscribe((resp : ICurrencyExchange) => {
-        if (resp) {
-          this.isLoading = false
-          this.TCcompra = resp.rates['PEN'];
-          this.TCventa = resp.rates['USD'];   
-        }
+      .subscribe((resp : ICurrencyExchange) => { 
+        this.TCcompra = resp.rates['PEN'];
+        this.TCventa = resp.rates['USD'];   
+        this.isLoading = false 
     });
   }
  
@@ -88,18 +94,18 @@ constructor(
     this.flgRotate = !this.flgRotate; 
     this.amountLeftValChanges(); 
   }
-
-
+ 
   amountLeftValChanges(): void {
-    const amount = this.montoaCambiar;
-    const amountRight = this.flgRotate == true 
-    ? amount * this.TCventa 
-    : amount * this.TCcompra;
+    const amount = this.currentAmount;
+    const newAmountRight = this.flgRotate ? amount * this.TCventa : amount * this.TCcompra;
+    const currentAmountRight = this.amountRightControl.value;
 
-    if (amountRight) {
-      this.amountRightControl.setValue((Math.round(amountRight * 100) / 100).toFixed(2));
+    const roundedNewAmountRight = (Math.round(newAmountRight * 100) / 100).toFixed(2);
+
+    if (currentAmountRight !== roundedNewAmountRight) { 
+      this.amountRightControl.setValue(roundedNewAmountRight, { emitEvent: false });
     }
-
   }
+
 
 }
